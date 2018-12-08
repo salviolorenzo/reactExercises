@@ -1,7 +1,13 @@
 import React from 'react';
 
 function TermList(props) {
-  return <ul>{props.terms}</ul>;
+  return (
+    <ul className='termlist'>
+      {props.terms.map(item => {
+        return <li>{item}</li>;
+      })}
+    </ul>
+  );
 }
 
 export default TermList;

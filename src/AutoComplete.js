@@ -39,14 +39,27 @@ class AutoComplete extends Component {
     console.log(this.state.searchTerm);
   }
 
+  _filterTerms(term) {
+    if (term !== '') {
+      const filteredArray = this.state.terms.filter(city => {
+        const termInCity = city.toLowerCase().includes(term.toLowerCase());
+        return termInCity;
+      });
+      return filteredArray;
+    } else {
+      const filteredArray = [];
+      return filteredArray;
+    }
+  }
+
   render() {
     return (
-      <div>
+      <div className='searchbox'>
         <SearchBar
           searchTerm={this.state.searchTerm}
           handleChange={this._setSearchTerm.bind(this)}
         />
-        <TermList />
+        <TermList terms={this._filterTerms(this.state.searchTerm)} />
       </div>
     );
   }
